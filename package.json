@@ -1,0 +1,26 @@
+{
+  "name": "pipa",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server.js",
+    "tests": "node tests.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AGPWR/pipa.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AGPWR/pipa/issues"
+  },
+  "homepage": "https://github.com/AGPWR/pipa#readme",
+  "dependencies": {
+    "assert": "^2.1.0",
+    "axios": "^1.6.8",
+    "express": "^4.19.2"
+  }
+}
