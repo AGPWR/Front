@@ -3,7 +3,7 @@ const axios = require('axios')
 
 axios.get('http://localhost:3000')
   .then(response => {
-    assert.strictEqual(response.data, 'Hello World!')
+    assert.strictEqual(response.data, 'Hello Wrld!')
     console.log('Test passed successfully!')
   })
   .catch(error => {
