@@ -16,4 +16,6 @@ jobs:
         node-version: 20
         cache: 'npm'
     - run: npm ci
-    - run: npm start && npm test
+    - run: npm start &
+    - run: sleep 10
+    - run: npm test
