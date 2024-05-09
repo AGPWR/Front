@@ -27,7 +27,7 @@ pipeline {
 
         stage('Deploy to Heroku') {
             steps {
-                sh 'curl https://cli-assets.heroku.com/install.sh | sh'
+                sh 'su -c "curl https://cli-assets.heroku.com/install.sh | sh" admin'
                 script {
                     withCredentials([[$class: 'StringBinding', credentialsId: 'HEROKU_API_KEY', variable: 'HEROKU_API_KEY']]) {
                         sh 'heroku login --no-interactive'
