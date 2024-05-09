@@ -29,8 +29,8 @@ pipeline {
             steps {
                 sh 'npm install -g heroku'
                 script {
-                    withCredentials([[$class: 'StringBinding', credentialsId: 'HEROKU_API_KEY', variable: 'HEROKU_API_KEY']]) {
-                        sh 'heroku login'
+                    withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'HEROKU_CREDENTIALS', usernameVariable: 'HEROKU_EMAIL', passwordVariable: 'HEROKU_API_KEY']]) {
+                        sh 'heroku login -i'
                         sh 'heroku create'
                         sh 'git push heroku main'
                         sh 'heroku ps:scale web=1'
