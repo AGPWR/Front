@@ -36,6 +36,12 @@ pipeline {
             }
         }
 
+        stage('Docker build') {
+            steps {
+                sh "docker build -t app ."
+            }
+        }
+
         
         stage('Deploy to Heroku') {
             steps {
