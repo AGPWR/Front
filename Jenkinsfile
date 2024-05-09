@@ -25,6 +25,18 @@ pipeline {
             }
         }
 
+        stage('Build Docker Containers') {
+            steps {
+                sh 'docker-compose build'
+            }
+        }
+
+        stage('Deploy Docker Containers') {
+            steps {
+                sh 'docker-compose up -d'
+            }
+        }
+        
         stage('Deploy to Heroku') {
             steps {
                 sh 'npm install -g heroku'
