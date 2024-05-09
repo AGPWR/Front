@@ -3,6 +3,11 @@ pipeline {
 
     tools {
         nodejs "node22.1.0"
+        dockerTool 'docker'
+    }
+
+    environments {
+        DOCKER_HUB_CREDENTIALS = credentials('DOCKER_HUB_CREDENTIALS')
     }
 
     stages {
@@ -25,15 +30,19 @@ pipeline {
             }
         }
 
-        stage('Build Docker Containers') {
+        stage('Docker check') {
             steps {
-                sh 'docker compose build'
+                sh 'docker build -t app .'
             }
         }
 
-        stage('Deploy Docker Containers') {
+        stage('Push to Docker Hub') {
             steps {
-                sh 'docker compose up -d'
+                script {
+                    docker.withRegistry('https://index.docker.io/v1/', DOCKER_HUB_CREDENTIALS) {
+                        docker.image('my-node-app').push('latest')
+                    }
+                }
             }
         }
         
