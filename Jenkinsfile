@@ -29,8 +29,7 @@ pipeline {
         stage('Docker login') {
             steps {
                 script {
-                    def dockerAuth = sh(script: "echo -n ${DOCKER_USERNAME}:${DOCKER_PASSWORD} | base64", returnStdout: true).trim()
-                    sh "DOCKER_AUTH=\${dockerAuth} docker login -u ${DOCKER_USERNAME} -p ${DOCKER_PASSWORD}"
+                    sh "docker login -u ${DOCKER_USERNAME} -p ${DOCKER_PASSWORD}"
                 }
             }
         }
