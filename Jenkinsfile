@@ -6,10 +6,6 @@ pipeline {
         dockerTool 'latest'
     }
 
-    environments {
-        DOCKER_HUB_CREDENTIALS = credentials('DOCKER_HUB_CREDENTIALS')
-    }
-
     stages {
         stage('Install') {
             steps {
