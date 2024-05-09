@@ -6,9 +6,14 @@ pipeline {
     }
 
     stages {
+        stage('Clone repository') {
+            steps {
+                git 'https://github.com/your-repository-url.git'
+                sh 'cd server'
+            }
+        }
         stage('Install') {
             steps {
-                sh 'cd server'
                 sh 'npm ci'
             }
         }
