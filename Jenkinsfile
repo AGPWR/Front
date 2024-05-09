@@ -27,6 +27,7 @@ pipeline {
 
         stage('Deploy to Heroku') {
             steps {
+                sh 'npm install -g heroku'
                 sh 'git push heroku main'
             }
         }
