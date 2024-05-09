@@ -9,15 +9,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/AGPWR/pipa.git"
+    "url": "git+https://github.com/AGPWR/Front.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/AGPWR/pipa/issues"
+    "url": "https://github.com/AGPWR/Front/issues"
   },
-  "homepage": "https://github.com/AGPWR/pipa#readme",
+  "homepage": "https://github.com/AGPWR/Front#readme",
   "dependencies": {
     "assert": "^2.1.0",
     "axios": "^1.6.8",
