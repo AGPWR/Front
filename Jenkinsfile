@@ -28,7 +28,6 @@ pipeline {
         stage('Deploy to Heroku') {
             steps {
                 sh 'git push heroku main'
-                }
             }
         }
     }
