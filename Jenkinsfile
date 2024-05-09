@@ -27,13 +27,7 @@ pipeline {
 
         stage('Deploy to Heroku') {
             steps {
-                script {
-                    withCredentials([[$class: 'UsernamePasswordMultiBinding', usernameVariable: 'HEROKU_EMAIL', passwordVariable: 'HEROKU_API_KEY']]) {
-                        sh 'heroku login -i'
-                        sh 'heroku create'
-                        sh 'git push heroku main'
-                        sh 'heroku ps:scale web=1'
-                    }
+                sh 'git push heroku main'
                 }
             }
         }
