@@ -21,6 +21,7 @@
   "dependencies": {
     "assert": "^2.1.0",
     "axios": "^1.6.8",
-    "express": "^4.19.2"
+    "express": "^4.19.2",
+    "heroku": "^8.11.5"
   }
 }
