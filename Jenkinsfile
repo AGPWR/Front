@@ -6,12 +6,6 @@ pipeline {
     }
 
     stages {
-        stage('Clone repository') {
-            steps {
-                git 'https://github.com/AGPWR/Front.git'
-                sh 'cd server'
-            }
-        }
         stage('Install') {
             steps {
                 sh 'npm ci'
