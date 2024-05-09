@@ -8,6 +8,7 @@ pipeline {
     stages {
         stage('Install') {
             steps {
+                sh 'cd server
                 sh 'npm ci'
             }
         }
