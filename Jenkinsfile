@@ -7,7 +7,7 @@ pipeline {
     }
 
     stages {
-        stage('Install') {
+        stage('Install Dependencies') {
             steps {
                 sh 'npm ci'
             }
@@ -29,18 +29,10 @@ pipeline {
         stage('Docker check') {
             steps {
                 sh 'docker build -t app .'
+                sh 'ls -la'
             }
         }
 
-        stage('Push to Docker Hub') {
-            steps {
-                script {
-                    docker.withRegistry('https://index.docker.io/v1/', DOCKER_HUB_CREDENTIALS) {
-                        docker.image('my-node-app').push('latest')
-                    }
-                }
-            }
-        }
         
         stage('Deploy to Heroku') {
             steps {
