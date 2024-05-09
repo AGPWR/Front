@@ -1,6 +1,7 @@
-from node:20-alpine
+FROM node:20-alpine
 WORKDIR /app
-COPY package.json package-lock.json 
+COPY server/package.json /app
+COPY server/package-lock.json /app
 RUN npm install
 COPY server .
 ENTRYPOINT npm run start
