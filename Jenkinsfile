@@ -8,7 +8,7 @@ pipeline {
     stages {
         stage('Clone repository') {
             steps {
-                git 'https://github.com/your-repository-url.git'
+                git 'https://github.com/AGPWR/Front.git'
                 sh 'cd server'
             }
         }
