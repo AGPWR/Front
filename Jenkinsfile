@@ -33,14 +33,13 @@ pipeline {
                 }
             }
         }
+        
         stage('Pushing image') {
             steps {
-                script {
-                    sh(script: 'docker tag front-image:latest genzoo/front-image:latest', label: 'Tagging image')
-                     withCredentials([usernamePassword(credentialsId: 'docker-hub-credentials', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASSWORD')]) {
-                        sh 'echo $DOCKER_PASSWORD | docker login --username $DOCKER_USER --password-stdin'
-                    }
-                    sh(script: 'docker push genzoo/front-image:latest', label: "Pushing...")
+                withCredentials([usernamePassword(credentialsId: 'docker-hub-credentials', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASSWORD')]) {
+                    sh "docker login -u $DOCKER_HUB_USERNAME -p $DOCKER_HUB_PASSWORD"
+                    sh 'docker tag front-image:latest genzoo/front-image:latest'
+                    sh 'docker push genzoo/front-image:latest'
                 }
             }
         }
