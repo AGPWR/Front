@@ -37,7 +37,7 @@ pipeline {
         stage('Pushing image') {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'docker-hub-credentials', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASSWORD')]) {
-                    sh "docker login -u $DOCKER_HUB_USERNAME -p $DOCKER_HUB_PASSWORD"
+                    sh "docker login -u $DOCKER_USER -p $DOCKER_PASSWORD"
                     sh 'docker tag front-image:latest genzoo/front-image:latest'
                     sh 'docker push genzoo/front-image:latest'
                 }
