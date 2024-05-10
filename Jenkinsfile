@@ -15,7 +15,6 @@ pipeline {
 
         stage('Build App') {
             steps {
-                sh 'cd server'
                 sh 'npm start &'
             }
         }
