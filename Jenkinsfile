@@ -7,32 +7,26 @@ pipeline {
     }
     
     stages {
-        stage('Checkout') {
-            steps{
-                checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/AGPWR/Front.git']])
-            }
-        }
-        
         stage('Install Dependencies') {
             steps {
                 sh 'npm ci'
             }
         }
 
-        stage('Build') {
+        stage('Build App') {
             steps {
                 sh 'cd server'
                 sh 'npm start &'
             }
         }
 
-        stage('Test') {
+        stage('Test App') {
             steps {
                 sh 'npm test'
             }
         }
 
-        stage('Building docker image') {
+        stage('Building Docker Image') {
             steps {
                 script {
                     sh(script: 'docker build -t front-image:latest .', label: 'Building image')
@@ -40,7 +34,7 @@ pipeline {
             }
         }
         
-        stage('Pushing image') {
+        stage('Pushing Docker Image') {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'docker-hub-credentials', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASSWORD')]) {
                     sh "docker login -u $DOCKER_USER -p $DOCKER_PASSWORD"
