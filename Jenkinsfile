@@ -5,9 +5,6 @@ pipeline {
         nodejs "node22.1.0"
         dockerTool 'latest'
     }
-    environment {
-        DOCKERHUB_CREDENTIALS = credentials('genzoo-dockerhub')
-    }
     
     stages {
         stage('Install Dependencies') {
