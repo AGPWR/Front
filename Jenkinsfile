@@ -29,24 +29,22 @@ pipeline {
             }
         }
 
-        stage('Docker version') {
+        stage('Building docker image') {
             steps {
-                sh "docker -v"
-                
+                script {
+                    sh(script: 'docker build -t front-image:latest .', label: 'Building image')
+                }
             }
         }
-
-        stage('Docker build') {
+        stage('Pushing image') {
             steps {
-                sh "docker build -t app ."
-            }
-        }
-
-        
-        stage('Deploy to Heroku') {
-            steps {
-                sh 'npm install -g heroku'
-                sh 'git push heroku main'
+                script {
+                    sh(script: 'docker tag front-image:latest genzoo/front-image:latest', label: 'Tagging image')
+                     withCredentials([usernamePassword(credentialsId: 'docker-hub-credentials', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASSWORD')]) {
+                        sh 'echo $DOCKER_PASSWORD | docker login --username $DOCKER_USER --password-stdin'
+                    }
+                    sh(script: 'docker push genzoo/front-image:latest', label: "Pushing...")
+                }
             }
         }
     }
