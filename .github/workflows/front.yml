@@ -33,12 +33,20 @@ jobs:
     runs-on: ubuntu-latest
     # Specifies the type of runner that the job will run on.
     steps:
+      - name: Checkout code
       - uses: actions/checkout@v4
       # Checks out the repository code so that the workflow can access it.
       
       - name: Scan dependencies for security vulnerabilities
-      # install and authenticate Snyk with the provided token, then run security tests.
-        run: |
-          npm install -g snyk
-          snyk auth ${{ secrets.SNYK_TOKEN }}
-          snyk test 
+      # Install and authenticate Snyk with the provided token, then run security tests.
+
+  linter:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        # Checks out the repository code so that the workflow can access it.
+
+      - name: Run Super-Linter
+        uses: github/super-linter@v4
+        # Run Super-Linter
