@@ -5,17 +5,25 @@ on:
   push:
     branches:
       - main
+      # Triggers the workflow on pushes to the 'main' branch.
+  pull_request:
+    branches:
+      - main
+      # Triggers the workflow on pull requests to the 'main' branch.
 
 jobs:
-  build:
+  build-and-test:
     runs-on: ubuntu-latest
+    # Specifies the type of runner that the job will run on.
     steps:
       - uses: actions/checkout@v4
+      # Checks out the repository code so that the workflow can access it.
       - name: Change directory to 'server'
         run: cd server
       - uses: actions/setup-node@v4
         with:
           node-version: 20
+          # Defines a matrix strategy to run the job with Node.js version 20.x.
           cache: 'npm'
       - run: npm ci
       - run: npm start &
@@ -23,9 +31,13 @@ jobs:
    
   security-scans:
     runs-on: ubuntu-latest
+    # Specifies the type of runner that the job will run on.
     steps:
       - uses: actions/checkout@v4
+      # Checks out the repository code so that the workflow can access it.
+      
       - name: Scan dependencies for security vulnerabilities
+      # install and authenticate Snyk with the provided token, then run security tests.
         run: |
           npm install -g snyk
           snyk auth ${{ secrets.SNYK_TOKEN }}
