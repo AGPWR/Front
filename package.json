@@ -21,6 +21,6 @@
   "dependencies": {
     "assert": "^2.1.0",
     "axios": "^1.6.8",
-    "express": "^4.19.2"
+    "express": "^4.21.1"
   }
 }
